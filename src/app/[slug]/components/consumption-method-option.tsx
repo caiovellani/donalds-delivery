@@ -9,6 +9,7 @@ interface Props {
   imageAlt: string
   buttonText: string
   option: ConsumptionMethod
+  slug: string
 }
 
 export default function ConsumptionMethodOption({
@@ -16,6 +17,7 @@ export default function ConsumptionMethodOption({
   imageUrl,
   buttonText,
   option,
+  slug,
 }: Props) {
   return (
     <>
@@ -31,7 +33,9 @@ export default function ConsumptionMethodOption({
           </div>
 
           <Button variant="secondary" className="rounded-full">
-            <Link href={`/menu?consumptionMethod=${option}`}>{buttonText}</Link>
+            <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
+              {buttonText}
+            </Link>
           </Button>
         </CardContent>
       </Card>

@@ -1,18 +1,18 @@
-import { db } from "@/lib/prisma";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import ConsumptionMethodOption from "./components/consumption-method-option";
+import { db } from '@/lib/prisma'
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
+import ConsumptionMethodOption from './components/consumption-method-option'
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>
 }
 
 export default async function RestaurantPage({ params }: Props) {
-  const { slug } = await params;
-  const restaurant = await db.restaurant.findUnique({ where: { slug: slug } });
+  const { slug } = await params
+  const restaurant = await db.restaurant.findUnique({ where: { slug: slug } })
 
   if (!restaurant) {
-    return notFound();
+    return notFound()
   }
 
   return (
@@ -35,12 +35,14 @@ export default async function RestaurantPage({ params }: Props) {
       </div>
       <div className="pt-14 grid grid-cols-2 gap-4">
         <ConsumptionMethodOption
+          slug={slug}
           imageUrl="/dine_in.png"
           imageAlt="Para comer aqui"
           buttonText="Para comer aqui"
           option="DINE_IN"
         />
         <ConsumptionMethodOption
+          slug={slug}
           imageUrl="/takeaway.png"
           imageAlt="Para levar"
           buttonText="Para levar"
@@ -48,5 +50,5 @@ export default async function RestaurantPage({ params }: Props) {
         />
       </div>
     </div>
-  );
+  )
 }
