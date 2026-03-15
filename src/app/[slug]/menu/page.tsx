@@ -1,5 +1,6 @@
 import { db } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
+import RestaurantHeader from './components/header'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -23,9 +24,13 @@ export default async function RestaurantMenuPage({
 
   const restaurant = await db.restaurant.findUnique({ where: { slug: slug } })
 
+  if (!restaurant) {
+    return notFound()
+  }
+
   return (
-    <h1>
-      {slug} {consumptionMethod}
-    </h1>
+    <div>
+      <RestaurantHeader restaurant={restaurant} />
+    </div>
   )
 }
