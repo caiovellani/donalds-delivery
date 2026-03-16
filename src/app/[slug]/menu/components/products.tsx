@@ -16,7 +16,7 @@ export default function Products({ products }: Props) {
           key={product.id}
         >
           <div>
-            <h3 className="text-sm font-medium">{product.name}</h3>
+            <h3 className="text-sm font-semibold">{product.name}</h3>
             <p className="line-clamp-2 text-sm text-muted-foreground">
               {product.description}
             </p>
